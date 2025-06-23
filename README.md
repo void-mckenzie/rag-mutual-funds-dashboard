@@ -136,9 +136,8 @@ The dashboard needs two main files:
 * **Process:**
 
   1. Decrypt with `pipelines/decrypto.py` if password protected.
-  2. Copy text from decrypted PDF.
-  3. Use an LLM (e.g., Gemini) with `pipelines/cams_cas_extractor_prompt.txt` (paste full PDF text into prompt as instructed).
-  4. Save the validated output as `data.json` in the data folder.
+  2. Use an LLM (e.g., Gemini) with `pipelines/cams_cas_extractor_prompt.txt` (upload the pdf using the files API of google's genai library, or use AI Studio GUI).
+  3. Save the validated output as `data.json` in the data folder.
 
 ### 2. `snapshot_data_updated.jsonl` (CDSL CAS)
 
