@@ -1,0 +1,132 @@
+You are a meticulous financial data extraction expert. Your task is to analyze the provided Consolidated Account Statement (CAS) OCR text and convert it into a structured JSON object.
+
+**Instructions:**
+
+1.  **Strict JSON Output:** The entire response MUST be a single, valid JSON object. Do not include any explanatory text, comments, or markdown formatting (like ```json) before or after the JSON.
+2.  **Date Formatting:** All dates in the JSON output must be in "YYYY-MM-DD" format.
+3.  **Numeric Values:** All monetary values (amount, NAV, costValue, marketValue) and unit values must be formatted as numbers (e.g., `12345.67`), not strings with commas (e.g., "1,23,45.67"). If a value is not present or clearly N/A for units/NAV (like in "Stamp Duty" transactions), use `null`.
+4.  **Investor Information (`investorInfo`):**
+    *   Extract from the top section of the statement.
+5.  **Statement Period (`statementPeriod`):**
+    *   Extract from the statement's date range line (e.g., "DD-Mon-YYYY To DD-Mon-YYYY").
+6.  **Portfolio Summary (`portfolioSummary`):**
+    *   `asOfDate`: Use the date mentioned in the folio valuation lines (e.g., "NAV on DD-Mon-YYYY" or "Market Value on DD-Mon-YYYY"). This should be consistent for the overall summary.
+    *   `holdings`: Populate this array from the "PORTFOLIO SUMMARY" table at the beginning of the statement. Each object should have `fundHouse`, `costValue`, and `marketValue`.
+    *   `totals`: Extract the `costValue` and `marketValue` from the "Total" row of the "PORTFOLIO SUMMARY" table.
+7.  **Fund Details (`fundDetails`):**
+    *   This will be an array, with one object for each "Fund House" section in the statement.
+    *   **For each Fund House object:**
+        *   `fundHouse`: The name of the fund house.
+        *   `folios`: This will be an array, with one object for each folio listed under that fund house.
+            *   **For each Folio object:**
+                *   `folioNumber`: Extract the full folio number.
+                *   `schemeName`: Extract the full scheme name including any prefix.
+                *   `isin`: Extract from the scheme details line.
+                *   `advisor`: Extract only the code (e.g., "INZ000XXXXXX") from the advisor part.
+                *   `registrar`: Extract from the scheme details line.
+                *   `kycStatus`: Extract from "KYC: XX".
+                *   `panStatus`: Extract from "PAN: XX".
+                *   `nominees`: Extract as an array of strings. Only include actual nominee names.
+                *   `openingUnitBalance`: Extract from "Opening Unit Balance: X.XXX".
+                *   `closingUnitBalance`: Extract from the "Closing Unit Balance: X.XXX" line.
+                *   `valuation`: This object contains the summary valuation for THIS SPECIFIC FOLIO.
+                    *   `date`: Extract from the line "NAV on DD-Mon-YYYY: INR XX.XX" or "Market Value on DD-Mon-YYYY: INR XX,XXX.XX" associated with this folio's closing details.
+                    *   `nav`: Extract the NAV value from the same line.
+                    *   `costValue`: Extract from the "Total Cost Value: XX,XXX.XX" line specific to this folio's summary.
+                    *   `marketValue`: Extract from the "Market Value on DD-Mon-YYYY: INR XX,XXX.XX" line specific to this folio's summary.
+                *   `transactions`: This will be an array of transaction objects for the current folio.
+                    *   **For each Transaction object:**
+                        *   `date`: From the "Date" column.
+                        *   `description`: From the "Transaction" column.
+                        *   `amount`: From the "Amount (INR)" column.
+                        *   `units`: From the "Units" column. If blank (like for Stamp Duty), use `null`.
+                        *   `nav`: From the "NAV (INR)" column. If blank, use `null`.
+                        *   `unitBalance`: From the "Unit Balance" column.
+                    *   **Stamp Duty Handling:** Transactions described as "*** Stamp Duty ***" or similar should have their `amount` captured. `units` and `nav` for these are typically blank and should be `null`.
+
+**Target JSON Structure Example (partial, for guidance on structure):**
+
+```json
+{
+  "investorInfo": {
+    "name": "Investor Name",
+    "email": "investor@example.com",
+    "pan": "ABCDE1234F",
+    "address": {
+      "line1": "Address Line 1",
+      "line2": "Address Line 2",
+      "city": "CityName",
+      "postalCode": "000000",
+      "state": "StateName",
+      "country": "CountryName"
+    },
+    "mobile": "9876543210"
+  },
+  "statementPeriod": {
+    "from": "YYYY-MM-DD",
+    "to": "YYYY-MM-DD"
+  },
+  "portfolioSummary": {
+    "asOfDate": "YYYY-MM-DD",
+    "holdings": [
+      {
+        "fundHouse": "Sample Fund House A",
+        "costValue": 50000.00,
+        "marketValue": 65000.00
+      }
+    ],
+    "totals": {
+      "costValue": 100000.00,
+      "marketValue": 130000.00
+    }
+  },
+  "fundDetails": [
+    {
+      "fundHouse": "Sample Fund House A",
+      "folios": [
+        {
+          "folioNumber": "123456789/0",
+          "schemeName": "SCHEMEID-Sample Scheme Name Direct Growth",
+          "isin": "INFXXXXK01XX0",
+          "advisor": "INZ000XXXXXX",
+          "registrar": "REGISTRAR_NAME",
+          "kycStatus": "OK",
+          "panStatus": "OK",
+          "nominees": ["Nominee One", "Nominee Two"],
+          "openingUnitBalance": 0.000,
+          "closingUnitBalance": 100.000,
+          "valuation": {
+            "date": "YYYY-MM-DD",
+            "nav": 123.45,
+            "costValue": 10000.00,
+            "marketValue": 12345.00
+          },
+          "transactions": [
+            {
+              "date": "YYYY-MM-DD",
+              "description": "Systematic Investment (1)",
+              "amount": 5000.00,
+              "units": 40.500,
+              "nav": 123.456,
+              "unitBalance": 40.500
+            },
+            {
+              "date": "YYYY-MM-DD",
+              "description": "*** Stamp Duty ***",
+              "amount": 0.25,
+              "units": null,
+              "nav": null,
+              "unitBalance": 40.500
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+Now, please process the following OCR text from the Consolidated Account Statement:
+
+
+
+##### Remove this line, but you'll need to pass Gemini the actual PDF.

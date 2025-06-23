@@ -1,0 +1,286 @@
+{
+    "investorInfo": {
+      "name": "Alex Investor",
+      "email": "alex.investor@example.com",
+      "pan": "DUMMYPAN12X",
+      "address": {
+        "line1": "123, Investment Lane",
+        "line2": "Wealthy Towers, Apt 4B",
+        "city": "Portfolio City",
+        "postalCode": "90210",
+        "state": "Financial State",
+        "country": "Republic of Data"
+      },
+      "mobile": "5550101010"
+    },
+    "statementPeriod": {
+      "from": "2020-01-01",
+      "to": "2024-07-15"
+    },
+    "portfolioSummary": {
+      "asOfDate": "2024-07-14",
+      "holdings": [
+        {
+          "fundHouse": "Alpha Mutual Fund",
+          "costValue": 75000.00,
+          "marketValue": 95000.50
+        },
+        {
+          "fundHouse": "Beta Asset Management",
+          "costValue": 40000.00,
+          "marketValue": 48000.75
+        },
+        {
+          "fundHouse": "Gamma Capital",
+          "costValue": 20000.00,
+          "marketValue": 18500.00
+        }
+      ],
+      "totals": {
+        "costValue": 135000.00,
+        "marketValue": 161501.25
+      }
+    },
+    "fundDetails": [
+      {
+        "fundHouse": "Alpha Mutual Fund",
+        "folios": [
+          {
+            "folioNumber": "ALPHA987654/01",
+            "schemeName": "ALPHAEQGR-Alpha Equity Growth Fund Direct Growth",
+            "isin": "INFALPHA01GR0",
+            "advisor": "ADVISOR001",
+            "registrar": "KFINTECH_DUMMY",
+            "kycStatus": "OK",
+            "panStatus": "OK",
+            "nominees": [
+              "Jane Investor",
+              "John Nominee Jr."
+            ],
+            "openingUnitBalance": 0.000,
+            "closingUnitBalance": 850.123,
+            "valuation": {
+              "date": "2024-07-14",
+              "nav": 111.75,
+              "costValue": 75000.00,
+              "marketValue": 95000.50
+            },
+            "transactions": [
+              {
+                "date": "2022-03-10",
+                "description": "Purchase",
+                "amount": 25000.00,
+                "units": 250.000,
+                "nav": 100.00,
+                "unitBalance": 250.000
+              },
+              {
+                "date": "2022-03-10",
+                "description": "*** Stamp Duty ***",
+                "amount": 1.25,
+                "units": null,
+                "nav": null,
+                "unitBalance": 250.000
+              },
+              {
+                "date": "2022-09-15",
+                "description": "Systematic Investment (SIP)",
+                "amount": 5000.00,
+                "units": 48.543,
+                "nav": 103.00,
+                "unitBalance": 298.543
+              },
+              {
+                "date": "2022-09-15",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.25,
+                "units": null,
+                "nav": null,
+                "unitBalance": 298.543
+              },
+              {
+                "date": "2023-05-20",
+                "description": "Purchase",
+                "amount": 44998.75,
+                "units": 409.080,
+                "nav": 110.00,
+                "unitBalance": 707.623
+              },
+              {
+                "date": "2023-05-20",
+                "description": "*** Stamp Duty ***",
+                "amount": 2.25,
+                "units": null,
+                "nav": null,
+                "unitBalance": 707.623
+              },
+              {
+                "date": "2024-01-10",
+                "description": "Systematic Investment (SIP)",
+                "amount": 5000.00,
+                "units": 42.500,
+                "nav": 117.647,
+                "unitBalance": 850.123
+              },
+              {
+                "date": "2024-01-10",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.25,
+                "units": null,
+                "nav": null,
+                "unitBalance": 850.123
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "fundHouse": "Beta Asset Management",
+        "folios": [
+          {
+            "folioNumber": "BETA123456/02",
+            "schemeName": "BETADEBTDIR-Beta Debt Fund Direct Growth",
+            "isin": "INFBETA01DB0",
+            "advisor": "ADVISOR002",
+            "registrar": "CAMS_DUMMY",
+            "kycStatus": "OK",
+            "panStatus": "OK",
+            "nominees": [
+              "Alex Investor"
+            ],
+            "openingUnitBalance": 100.000,
+            "closingUnitBalance": 450.987,
+            "valuation": {
+              "date": "2024-07-14",
+              "nav": 106.43,
+              "costValue": 40000.00,
+              "marketValue": 48000.75
+            },
+            "transactions": [
+              {
+                "date": "2021-07-01",
+                "description": "Purchase (Initial)",
+                "amount": 10000.00,
+                "units": 100.000,
+                "nav": 100.00,
+                "unitBalance": 100.000
+              },
+              {
+                "date": "2021-07-01",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.50,
+                "units": null,
+                "nav": null,
+                "unitBalance": 100.000
+              },
+              {
+                "date": "2023-01-10",
+                "description": "Purchase",
+                "amount": 29999.50,
+                "units": 288.461,
+                "nav": 104.00,
+                "unitBalance": 388.461
+              },
+              {
+                "date": "2023-01-10",
+                "description": "*** Stamp Duty ***",
+                "amount": 1.50,
+                "units": null,
+                "nav": null,
+                "unitBalance": 388.461
+              },
+              {
+                "date": "2024-06-05",
+                "description": "Systematic Investment (SIP)",
+                "amount": 5000.00,
+                "units": 47.169,
+                "nav": 106.00,
+                "unitBalance": 435.630
+              },
+               {
+                "date": "2024-06-05",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.25,
+                "units": null,
+                "nav": null,
+                "unitBalance": 435.630
+              },
+              {
+                "date": "2024-07-05",
+                "description": "Systematic Investment (SIP)",
+                "amount": 5000.00,
+                "units": 15.357,
+                "nav": 106.20,
+                "unitBalance": 450.987
+              },
+              {
+                "date": "2024-07-05",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.25,
+                "units": null,
+                "nav": null,
+                "unitBalance": 450.987
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "fundHouse": "Gamma Capital",
+        "folios": [
+          {
+            "folioNumber": "GAMMA000001/01",
+            "schemeName": "GAMMASCPGR-Gamma Small Cap Fund Direct Growth",
+            "isin": "INFGAMMA01SC0",
+            "advisor": "DIRECT",
+            "registrar": "KFINTECH_DUMMY",
+            "kycStatus": "OK",
+            "panStatus": "OK",
+            "nominees": [],
+            "openingUnitBalance": 0.000,
+            "closingUnitBalance": 150.000,
+            "valuation": {
+              "date": "2024-07-14",
+              "nav": 123.333,
+              "costValue": 20000.00,
+              "marketValue": 18500.00
+            },
+            "transactions": [
+              {
+                "date": "2024-02-01",
+                "description": "New Fund Offer (NFO)",
+                "amount": 10000.00,
+                "units": 100.000,
+                "nav": 100.00,
+                "unitBalance": 100.000
+              },
+              {
+                "date": "2024-02-01",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.50,
+                "units": null,
+                "nav": null,
+                "unitBalance": 100.000
+              },
+              {
+                "date": "2024-05-01",
+                "description": "Purchase",
+                "amount": 9999.50,
+                "units": 50.000,
+                "nav": 199.99,
+                "unitBalance": 150.000
+              },
+              {
+                "date": "2024-05-01",
+                "description": "*** Stamp Duty ***",
+                "amount": 0.50,
+                "units": null,
+                "nav": null,
+                "unitBalance": 150.000
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

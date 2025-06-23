@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive Mutual Fund Dashboard</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>My Interactive Mutual Fund Dashboard</h1>
+        <div class="kpi-bar">
+            <!-- KPIs remain the same -->
+            <div class="kpi"><span class="label">Total Investment</span><span id="total-investment" class="value">₹0</span></div>
+            <div class="kpi"><span class="label">Current Value</span><span id="current-value" class="value">₹0</span></div>
+            <div class="kpi"><span class="label">Overall Gain/Loss</span><span id="overall-gain" class="value">₹0</span></div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <aside class="controls">
+            <h2>Controls</h2>
+            <div class="control-group">
+                <h3>Theme</h3>
+                <label class="theme-switch" for="theme-toggle">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="control-group">
+                <label for="startDate">Date Range:</label>
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
+                <button id="apply-filters-button">Apply</button>
+            </div>
+            <div class="control-group">
+                <h3>Funds</h3>
+                <div id="fund-selector"></div>
+            </div>
+            <div class="control-group">
+                <h3>Chart Options</h3>
+
+                <!-- START: NEW TOGGLE ADDITION -->
+                <label>Group by:</label>
+                <div class="toggle-switch">
+                    <input type="radio" id="group-by-fund-house" name="groupBy" value="fundHouse" checked>
+                    <label for="group-by-fund-house">Fund House</label>
+                    <input type="radio" id="group-by-fund" name="groupBy" value="fund">
+                    <label for="group-by-fund">Fund</label>
+                </div>
+                <!-- END: NEW TOGGLE ADDITION -->
+                
+                <label>Growth Chart View:</label>
+                <div class="toggle-switch">
+                    <input type="radio" id="fund-breakdown-view" name="growthChartView" value="breakdown" checked>
+                    <label for="fund-breakdown-view">Fund Breakdown</label>
+                    <input type="radio" id="comparison-view" name="growthChartView" value="comparison">
+                    <label for="comparison-view">Value vs. Invested</label>
+                </div>
+
+                <div id="chart-type-control-group" class="control-sub-group">
+                    <label>Chart Type:</label>
+                    <div class="toggle-switch">
+                        <input type="radio" id="line-chart-toggle" name="growthChartType" value="line" checked>
+                        <label for="line-chart-toggle">Line</label>
+                        <input type="radio" id="area-chart-toggle" name="growthChartType" value="area">
+                        <label for="area-chart-toggle">Stacked Area</label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="visualizations">
+            <div class="chart-container large">
+                <h3>Portfolio Growth Over Time</h3>
+                <canvas id="portfolioGrowthChart"></canvas>
+            </div>
+            <div class="chart-container medium">
+                <h3>Fund Allocation (by Market Value)</h3>
+                <canvas id="fundAllocationChart"></canvas>
+            </div>
+            <div class="chart-container medium">
+                <h3>Profit Contribution</h3>
+                <canvas id="profitContributionChart"></canvas>
+            </div>
+            <div class="chart-container large">
+                <h3>Profit/Loss Percentage</h3>
+                <canvas id="profitLossPercentageChart"></canvas>
+            </div>
+            <div class="chart-container large">
+                <h3>Cost vs. Market Value</h3>
+                <canvas id="costVsMarketChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data as of 22-Jun-2025. This is a local, private dashboard.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

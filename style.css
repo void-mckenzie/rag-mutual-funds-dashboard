@@ -1,0 +1,247 @@
+:root {
+    --bg-color: #f4f7f9;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --subtle-text-color: #666;
+    --primary-color: #007bff;
+    --gain-color: #28a745;
+    --loss-color: #dc3545;
+    --border-color: #e0e0e0;
+}
+
+/* --- NEW: Dark Mode Color Variables --- */
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --subtle-text-color: #a0a0a0;
+    --primary-color: #0d6efd;
+    --border-color: #333;
+}
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
+}
+
+h2, h3 {
+    color: var(--text-color);
+}
+
+.kpi-bar {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.kpi .label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--subtle-text-color);
+}
+
+.kpi .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.dashboard-container {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.controls {
+    flex: 1;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    align-self: flex-start;
+}
+
+.visualizations {
+    flex: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* CHANGED back to two columns */
+    gap: 2rem;
+}
+
+.chart-container {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.chart-container.large {
+    grid-column: 1 / -1; /* This makes it span both columns */
+    width: 100%;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.control-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.control-group input[type="date"], .control-group button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.control-group button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#fund-selector div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#fund-selector label {
+    margin-bottom: 0;
+}
+
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* --- Toggle Switch for Radio Buttons --- */
+.toggle-switch {
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.toggle-switch input[type="radio"] {
+    display: none;
+}
+
+.toggle-switch label {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    user-select: none;
+    margin-bottom: 0;
+}
+
+.toggle-switch input[type="radio"]:checked + label {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+/* --- Control Sub-group --- */
+.control-sub-group {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-color);
+}
+
+.control-sub-group.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* --- NEW: Theme Toggle Switch Styles --- */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
