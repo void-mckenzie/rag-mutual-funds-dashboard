@@ -41,18 +41,23 @@ An **interactive personal dashboard** to visualize and track your mutual fund in
 ## Project Structure
 
 ```
-mutual_funds_dashboard/
-├── app.js                      # Main frontend JavaScript logic
-├── index.html                  # Main HTML structure
-├── style.css                   # CSS for styling
-├── favicon.svg                 # Favicon
-├── data.json                   # Detailed transaction data (from CAMS CAS)
-├── snapshot_data_updated.jsonl # Periodic holding snapshots (from CDSL CAS)
-└── pipelines/
-    ├── CDSL_Mutual_Funds_Extractor.py     # Extracts data from CDSL statements
-    ├── decrypto.py                       # Decrypts PDF statements
-    ├── cams_cas_extractor_prompt.txt      # LLM prompt for CAMS data extraction
-    └── ... (other pipeline scripts/files)
+rag-mutual-funds-dashboard/
+├── frontend/
+│   ├── app.js
+│   ├── index.html
+│   ├── style.css
+│   └── assets/
+│       └── favicon.svg
+│
+├── data/
+│   ├── data.json                    # Dummy/sample CAMS/KFintech data
+│   ├── snapshot_data_updated.jsonl  # Dummy/sample CDSL data
+│
+├── pipelines/
+│   ├── cams_cas_extractor_prompt.txt
+│   ├── CDSL_Mutual_Funds_Extractor.py
+│   ├── decrypto.py
+│   └── ... (other pipeline scripts/files)
 ```
 
 ---
@@ -108,14 +113,13 @@ mutual_funds_dashboard/
 
 4. **Web Server (Frontend)**
 
-   * Use a simple HTTP server to avoid CORS issues:
+   * From the project root (`rag-mutual-funds-dashboard/`), run:
 
      ```bash
-     cd /path/to/mutual_funds_dashboard
      python -m http.server
      ```
 
-     * Open `http://localhost:8000` in your browser.
+     * Then open `http://localhost:8000/frontend` in your browser to use the dashboard.
 
 ---
 

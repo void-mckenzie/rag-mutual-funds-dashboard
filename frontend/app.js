@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function initializeDashboard() {
         try {
             const [transactionResponse, snapshotResponse] = await Promise.all([
-                fetch('data.json'),
-                fetch('snapshot_data_updated.jsonl')
+                fetch('../data/data.json'),
+                fetch('../data/snapshot_data_updated.jsonl')
             ]);
     
             if (!transactionResponse.ok) throw new Error(`HTTP error! status: ${transactionResponse.status}`);
