@@ -1,6 +1,9 @@
 # Mutual Funds Dashboard
 
-**Demo ready:** This repo includes dummy `data.json` and `snapshot_data_updated.jsonl` files. You can launch the dashboard and try all features instantly—no personal data or setup required! Replace these with your own files later for real portfolio analytics.
+**Demo ready:** This repo includes dummy `data.json` and `snapshot_data_updated.jsonl` files. You can launch the dashboard and try all features instantly—no personal data or setup required!
+
+👇 _Scroll down to the [Demo](#demo) section to see screenshots of the dashboard in action!_
+
 
 An **interactive personal dashboard** to visualize and track your mutual fund investments. It consolidates data from **CAMS/KFintech Consolidated Account Statements (CAS)** and **monthly CDSL CAS** snapshots for a comprehensive portfolio overview.
 
@@ -198,3 +201,21 @@ The dashboard needs two main files:
 * **Security:** Store all financial data locally and handle passwords carefully. Never share your `data.json` or PDFs.
 
 * **Local LLM API:** The extractor script expects an OpenAI-compatible API (default: `http://127.0.0.1:8080/v1`).
+
+---
+
+## Demo
+
+<div align="center">
+
+<img src="frontend/assets/demo1.png" alt="Dashboard Home" width="700">
+<br>
+<img src="frontend/assets/demo1_2.png" alt="Filters Example" width="700">
+<br>
+<img src="frontend/assets/demo2.png" alt="Holdings View" width="700">
+<br>
+<img src="frontend/assets/demo3.png" alt="Growth Chart" width="700">
+<br>
+<img src="frontend/assets/demo4.png" alt="Dark Mode" width="700">
+
+</div>
