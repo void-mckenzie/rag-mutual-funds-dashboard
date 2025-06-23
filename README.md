@@ -50,7 +50,7 @@ rag-mutual-funds-dashboard/
 │       └── favicon.svg
 │
 ├── data/
-│   ├── data.json                    # Dummy/sample CAMS/KFintech data
+│   ├── data.json                    # Dummy/sample CAMS/KFintech data (replace with your own for real analysis)
 │   ├── snapshot_data_updated.jsonl  # Dummy/sample CDSL data
 │
 ├── pipelines/
@@ -92,7 +92,7 @@ rag-mutual-funds-dashboard/
 
 2. **olmocr**
 
-   * Install [olmocr](https://github.com/VikParuchuri/olm) per their docs.
+   * Install [olmocr](https://github.com/allenai/olmocr) per their docs.
    * Example:
 
      ```bash
@@ -135,7 +135,7 @@ The dashboard needs two main files:
   1. Decrypt with `pipelines/decrypto.py` if password protected.
   2. Copy text from decrypted PDF.
   3. Use an LLM (e.g., Gemini) with `pipelines/cams_cas_extractor_prompt.txt` (paste full PDF text into prompt as instructed).
-  4. Save the validated output as `data.json` in the root folder.
+  4. Save the validated output as `data.json` in the data folder.
 
 ### 2. `snapshot_data_updated.jsonl` (CDSL CAS)
 
@@ -165,7 +165,7 @@ The dashboard needs two main files:
 2. Run `olmocr` to convert to Markdown.
 3. Run `CDSL_Mutual_Funds_Extractor.py` to extract and update `snapshot_data_updated.jsonl`.
 
-**To refresh CAMS CAS data (****`data.json`****):**
+**To refresh CAMS CAS data (`data.json`):**
 
 * Repeat CAMS steps with your latest PDF.
 
@@ -173,13 +173,13 @@ The dashboard needs two main files:
 
 ## Dashboard Usage
 
-1. Ensure both `data.json` and `snapshot_data_updated.jsonl` are present and up to date.
+1. Ensure both `data.json` and `snapshot_data_updated.jsonl` are present in the `data/` folder and up to date.
 2. Start a local server:
 
    ```bash
    python -m http.server
    ```
-3. Open `index.html` in your browser (`http://localhost:8000`).
+3. Open `/frontend` in your browser (`http://localhost:8000/frontend`).
 4. Use controls to filter, switch charts, and toggle themes.
 
 ---
@@ -198,13 +198,3 @@ The dashboard needs two main files:
 * **Security:** Store all financial data locally and handle passwords carefully. Never share your `data.json` or PDFs.
 
 * **Local LLM API:** The extractor script expects an OpenAI-compatible API (default: `http://127.0.0.1:8080/v1`).
-
----
-
-## Future Enhancements
-
-* Automated PDF fetch (e.g., from email/portals)
-* Robust error handling
-* Direct PDF parsing for text-based PDFs
-* Advanced analytics (e.g., XIRR, rolling returns)
-* User accounts and persistent database
