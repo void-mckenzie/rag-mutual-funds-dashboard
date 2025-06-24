@@ -129,4 +129,4 @@ Now, please process the following OCR text from the Consolidated Account Stateme
 
 
 
-##### Remove this line, but you'll need to pass Gemini the actual PDF.
+##### Remove this line, but you'll need to pass Gemini the actual PDF. THe files API on genai library. This automatically applies OCR to the files and feeds it to gemini.
