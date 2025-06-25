@@ -1,4 +1,4 @@
-# Mutual Funds Dashboard
+# Mutual Funds Dashboard - Vibe Coding Diaries
 
 **Demo ready:** This repo includes dummy `data.json` and `snapshot_data_updated.jsonl` files. You can launch the dashboard and try all features instantly—no personal data or setup required!
 
