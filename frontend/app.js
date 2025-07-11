@@ -84,7 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateDashboard(data) {
-        updateKPIs(data);
+        // Use the growth data for the KPIs
+        const growthData = calculateGrowthData(data, allSnapshots);
+
+        updateKPIs(growthData); // Pass growthData instead of data
         renderPortfolioGrowthChart(data, allSnapshots);
         renderFundAllocationChart(data);
         renderProfitContributionChart(data);
@@ -236,15 +239,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
 
-    function updateKPIs(data) {
-        if (!data.portfolioSummary || !data.portfolioSummary.totals) {
+    function updateKPIs(growthData) {
+        // If you need to fallback:
+        if (!growthData) {
             document.getElementById('total-investment').textContent = `₹0.00`;
             document.getElementById('current-value').textContent = `₹0.00`;
             document.getElementById('overall-gain').textContent = `₹0.00 (0.00%)`;
             return;
         }
-        const totalCost = data.portfolioSummary.totals.costValue;
-        const marketValue = data.portfolioSummary.totals.marketValue;
+        console.log("growthData for KPIs", growthData);
+        const totalCost = growthData.finalInvestment;
+        const marketValue = growthData.finalTotalValue;
         const gain = marketValue - totalCost;
         const returnPercent = totalCost > 0 ? (gain / totalCost) * 100 : 0;
         document.getElementById('total-investment').textContent = `₹${totalCost.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
@@ -252,6 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('overall-gain').textContent = `₹${gain.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${returnPercent.toFixed(2)}%)`;
         document.getElementById('overall-gain').style.color = gain >= 0 ? 'var(--gain-color)' : 'var(--loss-color)';
     }
+    
     
     function populateFundSelector(data) {
         const selectorContainer = document.getElementById('fund-selector');
@@ -373,7 +379,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalValueDataset = { label: 'Total Market Value', data: totalValueDataPoints, borderColor: '#007bff', backgroundColor: '#007bff80', tension: 0.1 };
         const investmentDataset = { label: 'Cumulative Investment', data: investmentDataPoints, borderColor: '#fd7e14', borderDash: [5, 5], fill: false, tension: 0.1, pointRadius: 0 };
         
-        return { fundDatasets, totalValueDataset, investmentDataset };
+        return {
+            fundDatasets,
+            totalValueDataset,
+            investmentDataset,
+            finalTotalValue: totalValueDataPoints.length ? totalValueDataPoints[totalValueDataPoints.length - 1].y : 0,
+            finalInvestment: investmentDataPoints.length ? investmentDataPoints[investmentDataPoints.length - 1].y : 0,
+        };
     }
 
     function renderPortfolioGrowthChart(data, snapshots) {
@@ -622,14 +634,16 @@ function renderCostVsMarketChart(data) {
 }
 
 
-    function updateDashboard(data) {
-        updateKPIs(data);
-        renderPortfolioGrowthChart(data, allSnapshots);
-        renderFundAllocationChart(data);
-        renderProfitContributionChart(data);
-        renderCostVsMarketChart(data);
-        renderProfitLossPercentageChart(data); // <-- ADD THIS LINE
-    }
+function updateDashboard(data) {
+    const growthData = calculateGrowthData(data, allSnapshots);
+    console.log("growthData for KPIs", growthData); // <-- This should log an object with finalInvestment and finalTotalValue!
+    updateKPIs(growthData); // Pass growthData here
+    renderPortfolioGrowthChart(data, allSnapshots);
+    renderFundAllocationChart(data);
+    renderProfitContributionChart(data);
+    renderCostVsMarketChart(data);
+    renderProfitLossPercentageChart(data);
+}
     
     initializeDashboard();
 });
